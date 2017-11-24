@@ -1,0 +1,74 @@
+身為網頁開發者的各位相信都一定多少有聽過 jQuery 吧！他是個普及化非常高的 JavaScript 的工具，如果要寫 Client 端的開發者，我認為還是多少要會用它！
+
+當然！也有人堅持不用 jQuery，像我身旁就有很多同事會使用的純 JavaScript，亦或者 React.js、Angular.js 還是說 vue.js，不過學什麼都沒關係，因為以下我就是要講 jQuery！
+
+基本上如果你會 css 的 selector，那恭喜你，jQuery 你會一半了！
+
+怎麼說？因為 jQuery 裡面大部分在撈選 HTML 元素都可以使用 css 的 selector，舉例來說 css 制定 class="a" 的寫法是 .a {} 這樣，那 jQuery selector 就是 $('.a') 這樣寫，所以 id='b' 就是 $('#b') 啦！
+
+那既然都可以找到元素了，其他就只是你對 jQuery 的函式懂多少以及會用多少的經驗值問題了！不過下面還會稍微講解一下幾個基本範例。
+
+
+首先要用 jQuery 就一定要有幾個步驟，1. 加入 jQuery 資源 2. 等載入資源完成再開始，這兩個都是非常非常非常之重要的觀念！
+在 HTML 內除了本身要加入的 index.js 以外，還要再加入一隻 jQuery.js 的資源！
+
+這隻 jQuery 的資源你可以將它下載下來放在相對應的路徑上，亦或者可以直接使用官網提供的(CDN)也可以，這部分其實有差別的，但新手基本上就先不考慮這問題了。
+假設我們下載版本是 1.10.2，並且放入我們本地端，所以就要在 HTML 上加入引用語法
+
+<script src="jquery-1.10.2.min.js" language="javascript" type="text/javascript" ></script>
+
+
+加入語法後，接著就是第二點 “等載入資源完成再開始”，由於預防瀏覽器在資源還沒載入齊全之下就開始跑 JavaScript Code，所以我們就在 index.js 裡面修改一下，加入 $(function () {}); 的語法，並且把要做的事通通放在大括號內，如此一來就可以開始我們的 jQuery 之旅！
+
+$(function () {
+  
+});
+
+
+我們來實作幾個例子吧，如下範例，我們在 HTML 裡面寫了一個 div 其 id 為 list，然後再 index.js 內取出 #list，然後寫入 'Hello world!' 字串。
+
+<div id='list'></div>
+
+$(function () {
+  var list = $('#list');
+  list.text ('Hello world!');
+  console.log (list);
+});
+
+大家會好奇地覺得為什麼 list 可以做 .text 的動作吧，還記得 “物件” 嗎？其實 $('#list') 就是 jQuery 去 HTML 撈出符合資格 id='list' 的資料，並且以 jQuery 型態的物件回傳給變數 list，
+
+所以 list 就是一個物件！他是 jQuery 型態的物件！所以他可以使用該物件下的函式、變數囉！
+
+沒錯 .text 就是他的函式，至於各位會想問你怎知道他有哪些函式可以用..
+
+這個就是經驗囉，亦或者沒事就到 jQuery 官網 http://api.jquery.com/ 上面去東看看西看看囉！
+(作者當年台灣可是沒人在用 jQuery 就在學了，完全亂摸亂學起來的..QQ)
+
+.text 這個函式就是去更改 HTML 該元素的內容，記得只對雙標籤的元素有用，如：div、span... 等。
+
+
+
+我們先來學幾個 jQuery 物件的函式吧，今天就先學 click、val、append 吧！
+
+題目是 To Do List，也就是說有一個輸入框，也有一顆按鈕，當按鈕按下去之後，會新增一筆資料！
+
+依照題目需求，勢必會用到至少三種東西 input、button、div 沒錯吧，當 input 輸入文字，button 點擊，將文字新增到 div 上！
+
+所以說 HTML 要有這三個元素，接著簡單地用 css 劃分一下畫面與 style，然後就是重點 JavaScript 了！
+
+<input type='text' id='input_box' />
+<button type='button' id='submit'>送出</button>
+<div id='list'></div>
+
+
+以程式流程來說，當 button 按下去之後，div 要有東西，所以切入點是 button 的 click
+
+function clickFunc () {
+  
+}
+
+var button = $('#submit');
+button.click (clickFunc);
+
+
+
